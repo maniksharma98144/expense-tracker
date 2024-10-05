@@ -1,0 +1,35 @@
+<h2>Expense List</h2>
+<button mat-raised-button color="primary" (click)="addExpense()">Add Expense</button>
+<button mat-raised-button color="primary" (click)="viewChart()">Chart</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let expense">{{ expense.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef>Amount</th>
+    <td mat-cell *matCellDef="let expense">{{ expense.amount }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <td mat-cell *matCellDef="let expense">{{ expense.category }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let expense">{{ expense.date | date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let expense">
+      <button mat-button [routerLink]="['/edit', expense.id]">Edit</button>
+      <button mat-button (click)="deleteExpense(expense.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['name', 'amount', 'category', 'date', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['name', 'amount', 'category', 'date', 'actions'];"></tr>
+</table>
