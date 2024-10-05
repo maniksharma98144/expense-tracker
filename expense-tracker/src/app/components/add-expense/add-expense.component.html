@@ -3,24 +3,29 @@
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
     <input matInput formControlName="name" required />
+    <mat-error *ngIf="expenseForm.get('name')?.hasError('required')">Name is required</mat-error>
   </mat-form-field>
-  
+
   <mat-form-field appearance="fill">
     <mat-label>Amount</mat-label>
     <input type="number" matInput formControlName="amount" required />
+    <mat-error *ngIf="expenseForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+    <mat-error *ngIf="expenseForm.get('amount')?.hasError('min')">Amount must be greater than or equal to 0</mat-error>
   </mat-form-field>
-  
+
   <mat-form-field appearance="fill">
     <mat-label>Category</mat-label>
     <input matInput formControlName="category" required />
+    <mat-error *ngIf="expenseForm.get('category')?.hasError('required')">Category is required</mat-error>
   </mat-form-field>
-  
+
   <mat-form-field appearance="fill">
     <mat-label>Date</mat-label>
     <input matInput formControlName="date" [matDatepicker]="picker" required />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="expenseForm.get('date')?.hasError('required')">Date is required</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Add Expense</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="expenseForm.invalid">Add Expense</button>
 </form>

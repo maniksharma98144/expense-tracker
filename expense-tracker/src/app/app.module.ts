@@ -16,9 +16,14 @@ import { AddExpenseComponent } from './components/add-expense/add-expense.compon
 import { EditExpenseComponent } from './components/edit-expense/edit-expense.component';
 import { ExpenseListComponent } from './components/expense-list/expense-list.component';
 import { ExpenseChartComponent } from './components/expense-chart/expense-chart.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,13 @@ import { FooterComponent } from './components/footer/footer.component';
     MatTableModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({ expense: expenseReducer }),
-    BaseChartDirective
+    BaseChartDirective,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDividerModule,
   ],
   providers: [
     provideCharts(withDefaultRegisterables()),
@@ -50,4 +61,4 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

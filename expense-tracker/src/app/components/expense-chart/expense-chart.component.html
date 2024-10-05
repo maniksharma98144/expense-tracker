@@ -1,7 +1,6 @@
-<h2>Expense Chart</h2>
-<canvas baseChart
-  [datasets]="chartData.datasets"
-  [labels]="chartData.labels"
-  [options]="{ responsive: true }"
-  [type]="'line'">
-</canvas>
+<div class="chart-container">
+  <h2 class="chart-title">Expense Chart</h2>
+  <canvas baseChart [datasets]="chartData.datasets" [labels]="chartData.labels" [options]="chartOptions" [type]="'line'"
+    [legend]="true" [type]="'line'">
+  </canvas>
+</div>

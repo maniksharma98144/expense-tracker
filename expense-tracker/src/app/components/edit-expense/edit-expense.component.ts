@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Expense } from '../../models/expense.model';
 import * as ExpenseActions from '../../store/expense.actions';
 import { selectExpenseById } from '../../store/expense.selectors';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-expense',
@@ -14,7 +12,8 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./edit-expense.component.css']
 })
 export class EditExpenseComponent implements OnInit {
-  expenseForm: FormGroup;
+  expenseForm: FormGroup<any>;
+  id: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,24 +21,24 @@ export class EditExpenseComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.expenseForm = this.fb.group({
-      name: ['', Validators.required],
-      amount: ['', Validators.required],
-      category: ['', Validators.required],
-      date: ['', Validators.required]
+      name: new FormControl<string>('', Validators.required),
+      amount: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+      category: new FormControl<string>('', Validators.required),
+      date: new FormControl<Date | null>(new Date(), Validators.required)
     });
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.store.select(selectExpenseById(id)).subscribe(data=>{
+    this.store.select(selectExpenseById(this.id)).subscribe(data => {
       this.expenseForm.patchValue(data as Expense);
     });
   }
 
   updateExpense() {
     if (this.expenseForm.valid) {
-      this.store.dispatch(ExpenseActions.updateExpense({ expense: this.expenseForm.value }));
+      this.store.dispatch(ExpenseActions.updateExpense({ expense: { id: this.id, ...this.expenseForm.value } }));
       this.router.navigate(['/']);
     }
   }
