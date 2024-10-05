@@ -1,0 +1,26 @@
+<h2>Edit Expense</h2>
+<form [formGroup]="expenseForm" (ngSubmit)="updateExpense()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" required />
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input type="number" matInput formControlName="amount" required />
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="category" required />
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput formControlName="date" [matDatepicker]="picker" required />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Update Expense</button>
+</form>
