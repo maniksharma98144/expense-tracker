@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Expense } from '../../models/expense.model';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Expense, ExpenseForm } from '../../models/expense.model';
 import * as ExpenseActions from '../../store/expense.actions';
 
 @Component({
@@ -11,28 +11,30 @@ import * as ExpenseActions from '../../store/expense.actions';
   styleUrls: ['./add-expense.component.css']
 })
 export class AddExpenseComponent implements OnInit {
-  expenseForm: FormGroup;
-  
+  expenseForm: FormGroup<any>;
+
   private static currentId = 1;
 
   constructor(private store: Store, private router: Router, private fb: FormBuilder) {
     this.expenseForm = this.fb.group({
-      name: ['', Validators.required],
-      amount: ['', [Validators.required, Validators.min(0)]],
-      category: ['', Validators.required],
-      date: [new Date(), Validators.required]
+      name: new FormControl<string>('', Validators.required),
+      amount: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+      category: new FormControl<string>('', Validators.required),
+      date: new FormControl<Date | null>(new Date(), Validators.required)
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   addExpense() {
+    const formValues = this.expenseForm.value;
+
     const expense: Expense = {
       id: AddExpenseComponent.currentId++,
-      name: this.expenseForm.value.name,
-      amount: this.expenseForm.value.amount,
-      category: this.expenseForm.value.category,
-      date: new Date(this.expenseForm.value.date)
+      name: formValues.name,
+      amount: formValues.amount!,
+      category: formValues.category,
+      date: new Date(formValues.date!)
     };
 
     this.store.dispatch(ExpenseActions.addExpense({ expense }));
