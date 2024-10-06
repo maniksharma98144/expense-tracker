@@ -39,10 +39,10 @@ export class ExpenseListComponent implements OnInit {
     this.store.dispatch(ExpenseActions.loadExpenses());
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator
-  // }
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator
+  }
 
   deleteExpense(id: string) {
     const dialogRef = this.dialog.open(DeleteExpenseComponent, {
