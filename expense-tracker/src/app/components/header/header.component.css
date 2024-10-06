@@ -5,10 +5,42 @@ mat-toolbar {
 }
 
 .app-title {
+  color: #34495e;
   font-size: 24px;
   font-weight: bold;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.header-toolbar {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+}
+
+.header-logo img {
+  height: 40px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav a {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.header-cta {
+  display: flex;
+  align-items: center;
+}
+
+.header-cta button {
+  font-size: 14px;
 }

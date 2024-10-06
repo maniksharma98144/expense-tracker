@@ -16,6 +16,7 @@ import { AddExpenseComponent } from './components/add-expense/add-expense.compon
 import { EditExpenseComponent } from './components/edit-expense/edit-expense.component';
 import { ExpenseListComponent } from './components/expense-list/expense-list.component';
 import { ExpenseChartComponent } from './components/expense-chart/expense-chart.component';
+import { DeleteExpenseComponent } from './components/delete-expense/delete-expense.component'
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +24,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ExpenseChartComponent,
     HeaderComponent,
     FooterComponent,
+    DeleteExpenseComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +60,12 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSortModule,
     MatPaginatorModule,
     MatDividerModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [
     provideCharts(withDefaultRegisterables()),

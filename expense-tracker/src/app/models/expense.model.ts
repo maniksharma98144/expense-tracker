@@ -1,5 +1,5 @@
 export interface Expense {
-  id: number;
+  id: string;
   name: string;
   amount: number;
   category: string;
@@ -12,3 +12,5 @@ export interface ExpenseForm {
   category: string;
   date: Date;
 }
+
+export const categoryList: string[] = ['Food', 'Transport', 'Entertainment', 'Bills', 'Health', 'Others'];

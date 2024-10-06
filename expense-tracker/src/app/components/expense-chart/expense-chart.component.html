@@ -1,6 +1,7 @@
-<div class="chart-container">
-  <h2 class="chart-title">Expense Chart</h2>
-  <canvas baseChart [datasets]="chartData.datasets" [labels]="chartData.labels" [options]="chartOptions" [type]="'line'"
-    [legend]="true" [type]="'line'">
-  </canvas>
-</div>
+<main>
+  <h4 class="chart-title">Expenses Chart</h4>
+  <div class="chart-container">
+    <canvas baseChart [datasets]="chartData.datasets" [labels]="chartData.labels" [options]="chartOptions"
+      [type]="'line'" [legend]="true"></canvas>
+  </div>
+</main>

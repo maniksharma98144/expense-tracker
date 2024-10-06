@@ -8,7 +8,7 @@ export const selectExpenses = createSelector(
   (state: ExpenseState) => state.expenses
 );
 
-export const selectExpenseById = (id: number) => createSelector(
+export const selectExpenseById = (id: string) => createSelector(
   selectExpenseState,
   (state: ExpenseState) => state.expenses.find(expense => expense.id === id)
 );
