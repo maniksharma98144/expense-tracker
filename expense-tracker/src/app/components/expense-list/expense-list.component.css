@@ -17,6 +17,7 @@ button.mat-icon-button:hover {
 .expense-list-title {
     font-size: 28px;
     font-weight: bold;
+    color: #34495e;
     margin-bottom: 16px;
 }
 
@@ -34,6 +35,7 @@ mat-divider {
 
 table {
     width: 100%;
+    table-layout: auto;
 }
 
 th.mat-header-cell,
@@ -54,4 +56,50 @@ td.mat-cell {
 
 button {
     margin: 4px;
+}
+
+th.mat-header-cell {
+    width: 20%;
+}
+
+td.mat-cell {
+    width: 20%;
+}
+
+.mat-header-cell,
+.mat-cell {
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-sort-header {
+    cursor: pointer;
+}
+
+.custom-snackbar {
+    background-color: white;
+    color: #34495e;
+    font-size: 16px;
+}
+
+.mat-snack-bar-container {
+    border-radius: 4px;
+}
+
+mat-paginator {
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+
+    th.mat-header-cell,
+    td.mat-cell {
+        width: auto;
+        display: block;
+    }
+
+    .mat-header-cell {
+        display: none;
+    }
 }

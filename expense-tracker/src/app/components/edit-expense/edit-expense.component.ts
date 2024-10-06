@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Expense } from '../../models/expense.model';
 import * as ExpenseActions from '../../store/expense.actions';
-import { selectExpenseById } from '../../store/expense.selectors';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { categoryList } from '../../models/expense.model';
 
 @Component({
   selector: 'app-edit-expense',
@@ -13,15 +12,15 @@ import { selectExpenseById } from '../../store/expense.selectors';
 })
 export class EditExpenseComponent implements OnInit {
   expenseForm: FormGroup<any>;
-  id: number;
+  categories: string[] = categoryList
 
   constructor(
-    private route: ActivatedRoute,
     private store: Store,
-    private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<EditExpenseComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
   ) {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.expenseForm = this.fb.group({
       name: new FormControl<string>('', Validators.required),
       amount: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
@@ -31,15 +30,18 @@ export class EditExpenseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(selectExpenseById(this.id)).subscribe(data => {
-      this.expenseForm.patchValue(data as Expense);
-    });
+    this.expenseForm.patchValue(this.data.expense);
+    console.log(this.expenseForm)
   }
 
   updateExpense() {
     if (this.expenseForm.valid) {
-      this.store.dispatch(ExpenseActions.updateExpense({ expense: { id: this.id, ...this.expenseForm.value } }));
-      this.router.navigate(['/']);
+      this.store.dispatch(ExpenseActions.updateExpense({ expense: { id: this.data.expense.id, ...this.expenseForm.value } }));
+      this.dialogRef.close(true);
     }
+  }
+
+  closeDialog() {
+    this.dialogRef.close(false);
   }
 }

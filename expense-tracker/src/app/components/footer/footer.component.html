@@ -1,5 +1,36 @@
-<mat-toolbar color="accent" class="footer-toolbar">
-    <span>&copy; 2024 Expense Tracker. All Rights Reserved.</span>
-    <span class="spacer"></span>
-    <a mat-button target="_blank">Privacy Policy</a>
-</mat-toolbar>
+<mat-divider></mat-divider>
+<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-section logo-section">
+            <img src="assets/logo.png" alt="Logo" class="footer-logo">
+            <p class="footer-description">Your partner for expense management.</p>
+        </div>
+
+        <div class="footer-section quick-links">
+            <ul>
+                <li><a routerLink="/about">About</a></li>
+                <li><a routerLink="/contact">Contact</a></li>
+                <li><a routerLink="/privacy-policy">Privacy</a></li>
+                <li><a routerLink="/terms">Terms</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section social-media">
+            <div class="social-icons">
+                <a href="https://www.linkedin.com" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 Personal Expense Tracker. All rights reserved.</p>
+    </div>
+</footer>

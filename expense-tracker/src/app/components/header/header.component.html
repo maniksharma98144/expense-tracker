@@ -1,10 +1,18 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-toolbar">
+    <div class="header-logo">
+        <picture>
+            <img src="assets/logo.png" alt="Logo" class="logo">
+        </picture>
+    </div>
+
     <span class="app-title">Personal Expense Tracker</span>
-    <span class="spacer"></span>
-    <button mat-icon-button>
-        <mat-icon (click)="home()">home</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon (click)="viewChart()">assessment</mat-icon>
-    </button>
+
+    <nav class="header-nav">
+        <button mat-icon-button>
+            <mat-icon (click)="home()" matTooltip="Home">home</mat-icon>
+        </button>
+        <button mat-icon-button>
+            <mat-icon (click)="viewChart()" matTooltip="Chart View">assessment</mat-icon>
+        </button>
+    </nav>
 </mat-toolbar>

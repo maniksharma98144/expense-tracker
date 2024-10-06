@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Expense, ExpenseForm } from '../../models/expense.model';
+import { categoryList, Expense } from '../../models/expense.model';
 import * as ExpenseActions from '../../store/expense.actions';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ExpenseService } from '../../services/expense.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -12,10 +13,9 @@ import * as ExpenseActions from '../../store/expense.actions';
 })
 export class AddExpenseComponent implements OnInit {
   expenseForm: FormGroup<any>;
+  categories: string[] = categoryList
 
-  private static currentId = 1;
-
-  constructor(private store: Store, private router: Router, private fb: FormBuilder) {
+  constructor(private store: Store, private fb: FormBuilder, private service: ExpenseService, private dialogRef: MatDialogRef<AddExpenseComponent>) {
     this.expenseForm = this.fb.group({
       name: new FormControl<string>('', Validators.required),
       amount: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
@@ -30,7 +30,7 @@ export class AddExpenseComponent implements OnInit {
     const formValues = this.expenseForm.value;
 
     const expense: Expense = {
-      id: AddExpenseComponent.currentId++,
+      id: this.service.generateUniqueId(),
       name: formValues.name,
       amount: formValues.amount!,
       category: formValues.category,
@@ -38,6 +38,10 @@ export class AddExpenseComponent implements OnInit {
     };
 
     this.store.dispatch(ExpenseActions.addExpense({ expense }));
-    this.router.navigate(['/']);
+    this.dialogRef.close(true);
+  }
+
+  closeDialog() {
+    this.dialogRef.close(false);
   }
 }

@@ -7,8 +7,8 @@ export const loadExpensesSuccess = createAction(
   props<{ expenses: Expense[] }>()
 );
 export const loadExpensesFailure = createAction(
-    '[Expense] Load Expenses Failure',
-    props<{ error: any }>()
+  '[Expense] Load Expenses Failure',
+  props<{ error: any }>()
 );
 export const addExpense = createAction(
   '[Expense] Add Expense',
@@ -20,5 +20,5 @@ export const updateExpense = createAction(
 );
 export const deleteExpense = createAction(
   '[Expense] Delete Expense',
-  props<{ id: number }>()
+  props<{ id: string }>()
 );

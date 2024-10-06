@@ -55,3 +55,20 @@ mat-error {
         font-size: 14px;
     }
 }
+
+.dialog {
+    margin: 10%;
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.mat-select {
+    width: 100%;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
