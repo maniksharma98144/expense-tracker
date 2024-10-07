@@ -1,6 +1,7 @@
 <main>
   <h4 class="chart-title">Expenses Chart</h4>
-  <div class="chart-container">
+  <mat-spinner *ngIf="loading" diameter="50" class="spinner"></mat-spinner>
+  <div class="chart-container" *ngIf="!loading">
     <canvas baseChart [datasets]="chartData.datasets" [labels]="chartData.labels" [options]="chartOptions"
       [type]="'line'" [legend]="true"></canvas>
   </div>

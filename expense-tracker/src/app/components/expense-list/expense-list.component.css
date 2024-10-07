@@ -87,6 +87,17 @@ td.mat-cell {
     border-radius: 4px;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+mat-spinner {
+    margin: 0 auto;
+}
+
 mat-paginator {
     margin-top: 16px;
 }

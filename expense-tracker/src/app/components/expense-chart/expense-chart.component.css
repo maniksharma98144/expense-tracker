@@ -30,6 +30,17 @@ canvas {
     margin-left: 16px;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+mat-spinner {
+    margin: 0 auto;
+}
+
 @media (max-width: 768px) {
     .chart-container {
         padding: 10px;

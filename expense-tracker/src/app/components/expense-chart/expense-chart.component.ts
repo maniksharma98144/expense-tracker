@@ -12,6 +12,7 @@ import { selectExpenses } from '../../store/expense.selectors';
 export class ExpenseChartComponent implements OnInit, OnDestroy {
   expenses$!: Observable<Expense[]>;
   expensesSubscription!: Subscription;
+  loading: boolean = true;
 
   chartData: any = {
     labels: [],
@@ -72,11 +73,15 @@ export class ExpenseChartComponent implements OnInit, OnDestroy {
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.expenses$ = this.store.select(selectExpenses);
-    this.expensesSubscription = this.expenses$.subscribe((expenses) => {
-      this.chartData.labels = expenses.map((e) => e.name);
-      this.chartData.datasets[0].data = expenses.map((e) => e.amount);
-    });
+
+    setTimeout(() => {
+      this.expenses$ = this.store.select(selectExpenses);
+      this.expensesSubscription = this.expenses$.subscribe((expenses) => {
+        this.chartData.labels = expenses.map((e) => e.name);
+        this.chartData.datasets[0].data = expenses.map((e) => e.amount);
+      });
+      this.loading = false;
+    }, 1000)
   }
 
   ngOnDestroy() {

@@ -24,19 +24,24 @@ export class ExpenseListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   dataSource!: MatTableDataSource<Expense>;
+  loading: boolean = true;
 
-  constructor(private store: Store, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(private store: Store, private dialog: MatDialog, private snackBar: MatSnackBar) {
     this.store.select(selectExpenses).pipe(
       map(expenses => expenses ?? [])
     ).subscribe(expenses => {
       this.dataSource = new MatTableDataSource<Expense>(expenses);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-    });
+    })
   }
 
   ngOnInit() {
-    this.store.dispatch(ExpenseActions.loadExpenses());
+    setTimeout(() => {
+      this.store.dispatch(ExpenseActions.loadExpenses());
+      this.loading = false;
+    }, 1000);
+
   }
 
   ngAfterViewInit() {
