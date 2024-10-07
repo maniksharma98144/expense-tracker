@@ -26,3 +26,4 @@ Editing Expenses: Select an expense and click the edit icon to modify its detail
 Deleting Expenses: Use the delete icon to remove an expense. A confirmation dialog will appear to confirm the action.
 Viewing Expenses: The expense list is displayed in a table format, with options for sorting and pagination.
 Viewing Expenses in Chart: The expense list is displayed in a chart format
+Summary: The expense summary is displayed by category  
