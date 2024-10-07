@@ -12,10 +12,16 @@ import { ExpenseService } from '../../services/expense.service';
   styleUrls: ['./add-expense.component.css']
 })
 export class AddExpenseComponent implements OnInit {
-  expenseForm: FormGroup<any>;
-  categories: string[] = categoryList
+  expenseForm: FormGroup<any>; // Form for expense entry
+  categories: string[] = categoryList; // Expense categories
 
-  constructor(private store: Store, private fb: FormBuilder, private service: ExpenseService, private dialogRef: MatDialogRef<AddExpenseComponent>) {
+  constructor(
+    private store: Store, // State management
+    private fb: FormBuilder, // Form builder
+    private service: ExpenseService, // Expense logic
+    private dialogRef: MatDialogRef<AddExpenseComponent> // Dialog control
+  ) {
+    // Initialize the form with validation
     this.expenseForm = this.fb.group({
       name: new FormControl<string>('', Validators.required),
       amount: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
@@ -26,9 +32,11 @@ export class AddExpenseComponent implements OnInit {
 
   ngOnInit() { }
 
+  // Handle form submission
   addExpense() {
     const formValues = this.expenseForm.value;
 
+    // Create expense object
     const expense: Expense = {
       id: this.service.generateUniqueId(),
       name: formValues.name,
@@ -37,10 +45,11 @@ export class AddExpenseComponent implements OnInit {
       date: new Date(formValues.date!)
     };
 
-    this.store.dispatch(ExpenseActions.addExpense({ expense }));
+    this.store.dispatch(ExpenseActions.addExpense({ expense })); // Dispatch action
     this.dialogRef.close(true);
   }
 
+  // Close dialog without saving
   closeDialog() {
     this.dialogRef.close(false);
   }

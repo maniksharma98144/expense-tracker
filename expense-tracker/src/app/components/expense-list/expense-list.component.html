@@ -1,5 +1,10 @@
 <div class="header-container">
-  <h2 class="expense-list-title">Expenses</h2>
+  <h2 class="expense-list-title">
+    Expenses
+    <button mat-icon-button color="primary" matTooltip="Summary" (click)="showSummary()">
+      <mat-icon>assessment</mat-icon>
+    </button>
+  </h2>
   <button mat-icon-button color="primary" matTooltip="Add expense" (click)="addExpense()">
     <mat-icon>add</mat-icon>
   </button>

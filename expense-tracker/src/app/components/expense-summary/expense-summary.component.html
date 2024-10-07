@@ -1,0 +1,12 @@
+<div class="summary-container">
+    <h2>Expense Summary</h2>
+    <div class="total-expenses">
+        <strong>Total Expenses:</strong> <span class="currency">{{ totalExpenses | currency }}</span>
+    </div>
+    <h3>Expenses by Category:</h3>
+    <ul>
+        <li *ngFor="let category of (categorizedExpenses | keyvalue)">
+            {{ category.key }}: <span class="currency">{{ category.value | currency }}</span>
+        </li>
+    </ul>
+</div>

@@ -10,10 +10,11 @@ import { selectExpenses } from '../../store/expense.selectors';
   styleUrls: ['./expense-chart.component.css'],
 })
 export class ExpenseChartComponent implements OnInit, OnDestroy {
-  expenses$!: Observable<Expense[]>;
-  expensesSubscription!: Subscription;
-  loading: boolean = true;
+  expenses$!: Observable<Expense[]>; // Observable for expenses
+  expensesSubscription!: Subscription; // Subscription to expenses
+  loading: boolean = true; // Loading state
 
+  // Chart data structure
   chartData: any = {
     labels: [],
     datasets: [
@@ -30,6 +31,7 @@ export class ExpenseChartComponent implements OnInit, OnDestroy {
     ],
   };
 
+  // Chart options configuration
   chartOptions: any = {
     responsive: true,
     maintainAspectRatio: false,
@@ -73,18 +75,20 @@ export class ExpenseChartComponent implements OnInit, OnDestroy {
   constructor(private store: Store) { }
 
   ngOnInit() {
-
+    // Simulate loading delay before fetching expenses
     setTimeout(() => {
       this.expenses$ = this.store.select(selectExpenses);
       this.expensesSubscription = this.expenses$.subscribe((expenses) => {
+        // Update chart data with fetched expenses
         this.chartData.labels = expenses.map((e) => e.name);
         this.chartData.datasets[0].data = expenses.map((e) => e.amount);
       });
       this.loading = false;
-    }, 1000)
+    }, 1000);
   }
 
   ngOnDestroy() {
+    // Unsubscribe from expenses on component destroy
     if (this.expensesSubscription) {
       this.expensesSubscription.unsubscribe();
     }

@@ -31,6 +31,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ExpenseSummaryComponent } from './components/expense-summary/expense-summary.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HeaderComponent,
     FooterComponent,
     DeleteExpenseComponent,
+    ExpenseSummaryComponent,
   ],
   imports: [
     BrowserModule,
